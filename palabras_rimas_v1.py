@@ -7,9 +7,11 @@ def cargar_diccionario(path):
     diccionario = {}
     for letra in "abcdefghijklmnñopqrstuvwxyz":
         with open(os.path.join(path, f"{letra}.txt"), encoding="utf-8") as archivo:
-            palabras = archivo.read().splitlines()
-            for palabra in palabras:
-                diccionario[palabra.lower()] = True
+            lineas = archivo.read().splitlines()
+            for linea in lineas:
+                palabras = linea.split(', ')
+                for palabra in palabras:
+                    diccionario[palabra.lower()] = True
     return diccionario
 
 def palabras_similares(palabra, diccionario):
